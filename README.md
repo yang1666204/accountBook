@@ -3,6 +3,7 @@
 accountBook是一个基于react✨+material-ui⛄实现的H5记账本
 
 预览地址：https://yangon.web.cloudendpoint.cn/
+初始账号密码均为：admin
 
 ## 快速开始
 
