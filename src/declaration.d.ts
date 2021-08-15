@@ -1,0 +1,7 @@
+declare module 'react-router-dom'
+declare module 'react-hook-form'
+declare module 'react-router'
+declare module '@rematch/core'
+declare module 'react'
+declare module 'react/jsx-runtime'
+declare module 'react-redux'
