@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { PopContext } from '../account-book';
+import { PopContext } from '../account-book/index';
 
 
 //弹窗组件

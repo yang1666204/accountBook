@@ -31,25 +31,24 @@ export const ListsContext = React.createContext()
 function App() {
   let [listsData, setListsData] = useState(defaultValue)
   const [_open, _setOpen] = useState(false);
-     //判断是否弹出抽屉
+  //判断是否弹出抽屉
   const [isOpen, setIsOpen] = useState(false)
-    //是否返回首页
-  const [isBack,setIsBack] = useState(false)
+  //是否返回首页
+  const [isBack, setIsBack] = useState(false)
   useEffect(() => {
     axios.get('https://qcur9w.fn.thelarkcloud.com/getLists').then((res) => {
       if (res.data.code === '200') {
-        // listsData = res.data
         setListsData(res.data)
       } else {
         //数据获取失败
         console.log('获取列表数据失败');
       }
     })
-  }, [_open,isOpen,isBack])
+  }, [_open, isOpen, isBack])
 
   return (
 
-    <ListsContext.Provider value={{listsData,_open, _setOpen,isOpen, setIsOpen,setIsBack}} >
+    <ListsContext.Provider value={{ listsData, _open, _setOpen, isOpen, setIsOpen, setIsBack, isBack }} >
       <BrowserRouter>
         <Switch>
           <Route exact path='/' component={Login}></Route>

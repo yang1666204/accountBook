@@ -1,21 +1,13 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { useStyles } from '../account-book/useStyles'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import { ListsContext } from '../../App';
-
-import { PopContext } from '../account-book';
 
 export default function Item(props: any) {
     const classes = useStyles()
@@ -33,8 +25,6 @@ export default function Item(props: any) {
     }
 
     const handleDel = (uuid: string) => (event: any) => {
-        console.log("uuid", uuid);
-
         axios.delete('https://qcur9w.fn.thelarkcloud.com/delSingelAccount', {
             data: { uuid: uuid }
         }).then(res => {

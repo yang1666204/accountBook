@@ -33,45 +33,13 @@ function chooseIcon(type: string) {
     }
 }
 
-//删除弹窗组件
-interface uuid{
-    data:string
-}
-function DelWindow(parms: uuid) {
-    const history = useHistory()
-    function handleDel() {
-        axios.delete('https://qcur9w.fn.thelarkcloud.com/delSingelAccount', {
-            method: 'DELETE',
-            data: { uuid: parms.data }
-        }).then((res) => {
-            if (res.data.code === 200) {
-                history.push(`/accountBook?success`)
-            }
-        })
-    }
-    return (
-        <div style={{ position: 'relative', backgroundColor: '#FFFFFF', borderRadius: '10px', width: '80vw', height: '150px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-            <div style={{ textAlign: 'center', color: '#010101', paddingBottom: '15px' }}>
-                <span>删除后无法恢复，是否删除？</span>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'row', width: '100%', position: 'absolute', bottom: '0px' }}>
-                {/* <button style={{flex:1,textAlign:'center'}}>取消</button> */}
-                <Button style={{ flex: 1, textAlign: 'center' }}>取消</Button>
-                <Divider orientation="vertical" flexItem />
-                <Button onClick={handleDel} style={{ flex: 1, textAlign: 'center' }} color="secondary">删除</Button>
-                {/* <button style={{color:'#EFA7A9',flex:1,textAlign:'center'}}>删除</button> */}
-            </div>
-        </div>
-    )
-}
-
 
 
 export default function Detail() {
 
     const history = useHistory();
     const classes = useStyles();
-    const {isBack,setIsBack} = useContext(ListsContext)
+    const { isBack, setIsBack } = useContext(ListsContext)
     let [accountData, setAccountData] = useState(defaultValue)
     let [configData, setConfigData] = useState([])
     const [open, setOpen] = useState(false);
@@ -109,7 +77,7 @@ export default function Detail() {
     }
     //用context进行组件通信
     return (
-        <Ctx.Provider value={{ isOpen, setIsOpen, configData, accountData ,singalFlag}}>
+        <Ctx.Provider value={{ isOpen, setIsOpen, configData, accountData, singalFlag }}>
             <div className={classes.rootContainer}>
                 <ArrowBackIosIcon style={{ position: 'absolute', top: '10px', left: '10px' }} onClick={handleBack} />
                 <Card className={classes.root}>
@@ -152,9 +120,41 @@ export default function Detail() {
                 </Card>
 
                 <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
-                    {openType === 'del' ? <DelWindow data={uuid} /> : <EditWindow data={{ isOpen, setIsOpen, configData, accountData,uuid }} />}
+                    {openType === 'del' ? <DelWindow data={uuid} /> : <EditWindow data={{ isOpen, setIsOpen, configData, accountData, uuid }} />}
                 </Backdrop>
             </div>
         </Ctx.Provider>
     );
+}
+
+//删除弹窗组件
+interface uuid {
+    data: string
+}
+function DelWindow(parms: uuid) {
+    const history = useHistory()
+    function handleDel() {
+        axios.delete('https://qcur9w.fn.thelarkcloud.com/delSingelAccount', {
+            method: 'DELETE',
+            data: { uuid: parms.data }
+        }).then((res) => {
+            if (res.data.code === 200) {
+                history.push(`/accountBook?success`)
+            }
+        })
+    }
+    return (
+        <div style={{ position: 'relative', backgroundColor: '#FFFFFF', borderRadius: '10px', width: '80vw', height: '150px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ textAlign: 'center', color: '#010101', paddingBottom: '15px' }}>
+                <span>删除后无法恢复，是否删除？</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'row', width: '100%', position: 'absolute', bottom: '0px' }}>
+                {/* <button style={{flex:1,textAlign:'center'}}>取消</button> */}
+                <Button style={{ flex: 1, textAlign: 'center' }}>取消</Button>
+                <Divider orientation="vertical" flexItem />
+                <Button onClick={handleDel} style={{ flex: 1, textAlign: 'center' }} color="secondary">删除</Button>
+                {/* <button style={{color:'#EFA7A9',flex:1,textAlign:'center'}}>删除</button> */}
+            </div>
+        </div>
+    )
 }

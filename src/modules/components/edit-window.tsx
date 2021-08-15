@@ -1,4 +1,4 @@
-import React, { useState, useRef ,useMemo,useContext} from 'react';
+import React, { useState, useRef, useMemo, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom'
 import axios from 'axios';
@@ -14,7 +14,7 @@ import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import Paper from '@material-ui/core/Paper';
 import { red } from '@material-ui/core/colors';
 import { getConfig } from '../util'
-import {ListsContext} from '../../App'
+import { ListsContext } from '../../App'
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
 
